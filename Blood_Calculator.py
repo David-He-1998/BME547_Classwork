@@ -19,5 +19,15 @@ def interface():
 def user_input():
     HDL_input = input("Please input your HDL value, press enter to confirm:")
     return int(HDL_input)
+
+def check_HDL(HDL_value):
+    if HDL_value>=60:
+        return "Your HDL is normal"
+    elif HDL_value>=40:
+        return "Your HDL value is borderline low"
+    else:
+        return "Your HDL value is low"
+    
+            
    
 interface()
