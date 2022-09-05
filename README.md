@@ -3,7 +3,7 @@
 Author: Ziwei(David) He
 
 ## Purpose
-The purpose is blablabla  
+This small blood test project aims to learn about the git workflow and python  
 * Patient name
 * Age
 * Name
