@@ -9,12 +9,15 @@ Created on Mon Sep  5 12:28:31 2022
 def interface():
     print("My Program")
     print("Options:")
+    print("1 - Check HDL value")
     print("9 - Quit")
     run_tag = True
     while run_tag:
         choice = input("Enter your choice: ")
         if choice=='9':
             return
+        elif choice=='1':
+            HDL_driver()
 
 def user_input():
     HDL_input = input("Please input your HDL value, press enter to confirm:")
