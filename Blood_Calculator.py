@@ -22,11 +22,16 @@ def user_input():
 
 def check_HDL(HDL_value):
     if HDL_value>=60:
-        return "Your HDL is normal"
+        return "Normal"
     elif HDL_value>=40:
-        return "Your HDL value is borderline low"
+        return "Borderline Low"
     else:
-        return "Your HDL value is low"
+        return "Low"
+    
+def HDL_driver():
+    hdl_value=user_input()
+    ans=check_HDL(hdl_value)
+    print("The result of your HDL is {} and {}".format(hdl_value,ans))
     
             
    
