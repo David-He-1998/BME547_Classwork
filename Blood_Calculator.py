@@ -23,7 +23,12 @@ def interface():
             LDL_driver()
 
 def user_input():
-    value = input("Please input your HDL value, press enter to confirm:")
+    while True:
+        value = input("Please input your corresponding value, press enter to confirm:")
+        if str.isdigit(value) == False:
+            print("Please input a positive integer to continue")
+        else:
+            break
     return int(value)
 
 def check_HDL(HDL_value):
