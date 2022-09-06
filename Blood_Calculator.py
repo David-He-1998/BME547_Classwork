@@ -10,6 +10,7 @@ def interface():
     print("My Program")
     print("Options:")
     print("1 - Check HDL value")
+    print("2 - Check LDL value")
     print("9 - Quit")
     run_tag = True
     while run_tag:
@@ -18,10 +19,17 @@ def interface():
             return
         elif choice=='1':
             HDL_driver()
+        elif choice=='2':
+            LDL_driver()
 
 def user_input():
-    HDL_input = input("Please input your HDL value, press enter to confirm:")
-    return int(HDL_input)
+    while True:
+        value = input("Please input your corresponding value, press enter to confirm:")
+        if str.isdigit(value) == False:
+            print("Please input a positive integer to continue")
+        else:
+            break
+    return int(value)
 
 def check_HDL(HDL_value):
     if HDL_value>=60:
@@ -31,10 +39,28 @@ def check_HDL(HDL_value):
     else:
         return "Low"
     
+def check_LDL(LDL_value):
+    if LDL_value>=190:
+        return "Very high"
+    elif LDL_value>=160:
+        return "High"
+    elif LDL_value>=130:
+        return "Borderline high"
+    else:
+        return "Normal"
+    
 def HDL_driver():
     hdl_value=user_input()
     ans=check_HDL(hdl_value)
     print("The result of your HDL is {} and {}".format(hdl_value,ans))
+    
+def LDL_driver():
+    ldl_value=user_input()
+    ans=check_LDL(ldl_value)
+    print("The result of your LDL is {} and {}".format(ldl_value,ans))
+    
+
+    
     
             
    
