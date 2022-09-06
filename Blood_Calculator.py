@@ -49,6 +49,11 @@ def HDL_driver():
     ans=check_HDL(hdl_value)
     print("The result of your HDL is {} and {}".format(hdl_value,ans))
     
+def LDL_driver():
+    ldl_value=user_input()
+    ans=check_LDL(ldl_value)
+    print("The result of your LDL is {} and {}".format(ldl_value,ans))
+    
 
     
     
