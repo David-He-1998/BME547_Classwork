@@ -70,7 +70,10 @@ def LDL_driver():
     ans=check_LDL(ldl_value)
     print("The result of your LDL is {} and {}".format(ldl_value,ans))
     
-
+def Chol_driver():
+    chol_value=user_input()
+    ans=check_chol(chol_value)
+    print("The result of your total cholesterol is {} and {}".format(chol_value,ans))
             
    
 interface()
