@@ -20,8 +20,8 @@ def interface():
             HDL_driver()
 
 def user_input():
-    HDL_input = input("Please input your HDL value, press enter to confirm:")
-    return int(HDL_input)
+    value = input("Please input your HDL value, press enter to confirm:")
+    return int(value)
 
 def check_HDL(HDL_value):
     if HDL_value>=60:
