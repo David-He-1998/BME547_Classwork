@@ -75,5 +75,5 @@ def Chol_driver():
     ans=check_chol(chol_value)
     print("The result of your total cholesterol is {} and {}".format(chol_value,ans))
             
-   
-interface()
+if __name__ == "__main__":   #If the script is on main module, excute the interface command.
+    interface()             # If the script is imported as module, this command will not be executed
