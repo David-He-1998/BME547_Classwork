@@ -29,7 +29,7 @@ def getinput():
     weight_data = weight_input.split(" ")
     return diagnosis, weight_data
 
-       
+
 def weight(weight_data):
     weight = float(weight_data[0])
     units = weight_data[1]
