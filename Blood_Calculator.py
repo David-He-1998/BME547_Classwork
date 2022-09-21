@@ -26,14 +26,17 @@ def interface():
         elif choice == '3':
             Chol_driver()
 
+
 def user_input():
     while True:
-        value = input("Please input your corresponding value, press enter to confirm:")
-        if str.isdigit(value) == False:
+        value = input("Please input your corresponding value, press enter \
+                      to confirm:")
+        if str.isdigit(value) is False:
             print("Please input a positive integer to continue")
         else:
             break
     return int(value)
+
 
 def check_HDL(HDL_value):
     if HDL_value >= 60:
@@ -42,8 +45,8 @@ def check_HDL(HDL_value):
         return "Borderline Low"
     else:
         return "Low"
-    
-    
+
+
 def check_LDL(LDL_value):
     if LDL_value >= 190:
         return "Very High"
@@ -53,36 +56,38 @@ def check_LDL(LDL_value):
         return "Borderline High"
     else:
         return "Normal"
-    
-#Cholesterol  
-def check_chol(chol_value): 
+
+
+# Cholesterol
+def check_chol(chol_value):
     if chol_value >= 240:
         return "High"
     elif chol_value >= 200:
         return "Borderline High"
     else:
         return "Normal"
-    
+
+
 def HDL_driver():
     hdl_value = user_input()
     ans = check_HDL(hdl_value)
     print("The result of your HDL is {} and {}".format(hdl_value, ans))
-    
-    
+
+
 def LDL_driver():
     ldl_value = user_input()
     ans = check_LDL(ldl_value)
     print("The result of your LDL is {} and {}".format(ldl_value, ans))
-    
-    
+
+
 def Chol_driver():
     chol_value = user_input()
     ans = check_chol(chol_value)
-    print("The result of your total cholesterol is {} and {}".format(chol_value, ans))
-     
-       
-if __name__ == "__main__":   
-    interface()             
-# If the script is on main module, excute the interface command.  
+    print("The result of your total cholesterol is {} and {}".format(
+            chol_value, ans))
+
+
+if __name__ == "__main__":
+    interface()
+# If the script is on main module, excute the interface command.
 # If the script is imported as module, this command will not be executed
-    
