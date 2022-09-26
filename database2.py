@@ -7,6 +7,27 @@ Created on Wed Sep 14 12:30:51 2022
 """
 
 
+class Patient:
+    '''
+    def __init__(self):
+        self.First_name = ""
+        self.Last_name = ""
+        self.Id = ""
+        self.age = ""
+        self.test = ""
+    '''
+    def __init__(self, first_name, last_name, Id, age, test):
+        self.First_name = first_name
+        self.Last_name = last_name
+        self.Id = Id
+        self.age = age
+        self.test = test
+
+    def get_full_name(self):
+        full_name = "{} {}".format(self.First_name, self.Last_name)
+        return full_name
+
+
 # For the ease of future modification
 # For example, you need to add a new entry.
 # In this case, you only need to change here
@@ -25,11 +46,13 @@ def main():
     db.append(patient_entry("Charis Chou", 3, 23))
     return db
     '''
+    '''
     db = {}
     db[11] = (patient_entry("Ann", "Ables", 1, 30, ''))
     db[22] = (patient_entry("Bob", "Boyles", 2, 34, ''))
     db[33] = (patient_entry("Charis", "Chou", 3, 23, ''))
     return db
+    '''
 
 
 def list_all(db):
@@ -56,19 +79,24 @@ def add(entry, test, test_result):
 
 
 def patient_entry(First_name, Last_name, ID, Age, Tests):
-    dictionary = {"First Name": First_name, "Last Name": Last_name,
-                  "Id": ID, "Age": Age, "Tests": Tests}
-    return dictionary
-
-
-def get_full_name(patient):
-    full_name = "{} {}".format(patient["First Name"], patient["Last Name"])
-    return full_name
+    new_patient = Patient()
+    new_patient.First_name = First_name
+    new_patient.Last_name = Last_name
+    new_patient.Id = ID
+    new_patient.age = Age
+    new_patient.test = []
+    return new_patient
+    # dictionary = {"First Name": First_name, "Last Name": Last_name,
+    #              "Id": ID, "Age": Age, "Tests": Tests}
+    # return dictionary
 
 
 def print_db(db):
     for patient in db:
-        print("Name: {}, Id: {}, age: {}".format(get_full_name(db[patient]),
+        # print("Name: {}, Id: {}, age: {}".format(get_full_name(db[patient]),
+        #                                         db[patient]["Id"],
+        #                                         db[patient]["Age"]))
+        print("Name: {}, Id: {}, age: {}".format(db[patient].get_full_name(),
                                                  db[patient]["Id"],
                                                  db[patient]["Age"]))
 
@@ -81,7 +109,7 @@ def adult_or_minor(patient):
 
 
 if __name__ == "__main__":
-    db = main()
+    # db = main()
     # list_all(entry)
     # output=search(entry,4)
     # print(output)
@@ -92,9 +120,16 @@ if __name__ == "__main__":
         entry[index] = patient
         print(entry[index])
     '''
-
+    '''
     patient = search(db, 3)
     if patient is not False:
         print("The patient is {}".format(adult_or_minor(db[patient])))
         add(db[patient], 'HDL', 40)
         print_db(db)
+    '''
+    patient = Patient("Ann", "Ables", 1, 30, ['HDL', 40])
+    print("Full name:{}, ID:{}, Age:{}, test:{}".format(
+           patient.get_full_name(), patient.Id, patient.age, patient.test))
+    print(type(patient))
+    # patient = patient_entry("Ann", "Ables", 1, 30, [])
+    # print("{}, age {}".format(patient.get_full_name(), patient.age))
