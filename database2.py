@@ -84,7 +84,7 @@ def patient_entry(First_name, Last_name, ID, Age, Tests):
     new_patient.Last_name = Last_name
     new_patient.Id = ID
     new_patient.age = Age
-    new_patient.test = []
+    new_patient.test = Tests
     return new_patient
     # dictionary = {"First Name": First_name, "Last Name": Last_name,
     #              "Id": ID, "Age": Age, "Tests": Tests}
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     '''
     patient = Patient("Ann", "Ables", 1, 30, ['HDL', 40])
     print("Full name:{}, ID:{}, Age:{}, test:{}".format(
-           patient.get_full_name(), patient.Id, patient.age, patient.test))
+          patient.get_full_name(), patient.Id, patient.age, patient.test))
     print(type(patient))
-    # patient = patient_entry("Ann", "Ables", 1, 30, [])
-    # print("{}, age {}".format(patient.get_full_name(), patient.age))
+    # patient1 = patient_entry("Ann", "Ables", 1, 30, ["HDL", 40])
+    # print("{}, age {}".format(patient1.get_full_name(), patient1.age))
