@@ -51,7 +51,7 @@ def search(db, index):
 
 
 def add(entry, test, test_result):
-    entry[test] = (test_result)
+    entry[test] = test_result
     return entry
 
 
@@ -95,6 +95,7 @@ if __name__ == "__main__":
 
     patient = search(db, 3)
     if patient is not False:
-        print("The patient is {}".format(adult_or_minor(db[patient])))
+        print("The patient {} is {}".format(get_full_name(db[patient]),
+              adult_or_minor(db[patient])))
         add(db[patient], 'HDL', 40)
         print_db(db)
