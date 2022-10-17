@@ -12,10 +12,10 @@ import requests
 #     ans = r.json()
 # else:
 #     print("Bad request")
-# info = {"name": "Ziwei He", "net_id": "zh128", "e-mail":"ziweihe.974@duke.edu"}
+# info = {"name": "Ziwei He", "net_id": "zh128", "e-mail":"ziweihe.974@duke.edu
+#        "}
 # r = requests.post("http://vcm-21170.vm.duke.edu:5000/student", json = info)
 
 info1 = {"user": "Ziwei_He", "message": "Hello"}
-R = requests.post("http://vcm-21170.vm.duke.edu:5001/add_message", json = 
-                  info1)
-
+R = requests.post("http://vcm-21170.vm.duke.edu:5001/add_message", json=info1)
+Get = requests.get("http://vcm-21170.vm.duke.edu:5001/get_messages/jl922")
