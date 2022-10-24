@@ -42,5 +42,11 @@ def add_num():
     return jsonify(ans)
 
 
+@app.route('/add_num1/<a>/<b>', methods=['GET'])
+def add_num1(a, b):
+    ans = float(a) + float(b)
+    return ans
+
+
 if __name__ == "__main__":
     app.run()
