@@ -74,15 +74,11 @@ def add_test(in_data, check):
         message = check
         return message, 400
     flag = False
-    if len(db) == 0:
-        message = "Empty database"
-        status = 400
-    else:
-        for item in db:
-            if item['id'] == in_data['id']:
-                item['test_name'].append(in_data['test_name'])
-                item['test_result'].append(in_data['test_result'])
-                flag = True
+    for item in db:
+        if item['id'] == in_data['id']:
+            item['test_name'].append(in_data['test_name'])
+            item['test_result'].append(in_data['test_result'])
+            flag = True
     if flag is False:
         message = "Unable to find the patient"
         status = 400
