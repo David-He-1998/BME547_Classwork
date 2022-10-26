@@ -15,5 +15,5 @@ import requests
 #     send = {'a': 50, 'b': 11}
 #     r = requests.post("http://127.0.0.1:5000/add_num", json=send)
 #     ans = r.json()
-patient = []
-r = requests.post("http://127.0.0.1:5000/add_num", json=patient)
+patient = {'test_result': 120}
+r = requests.post("http://127.0.0.1:5000/add_test", json=patient)
