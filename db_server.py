@@ -114,7 +114,7 @@ def init_database():
             "retryWrites=true&w=majority")
     new_patient = {"name": "david", "id": 2, "blood type": "O+"}
     add_patient(new_patient, True)
-    
+
 
 if __name__ == "__main__":
     init_database()
