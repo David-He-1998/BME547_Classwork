@@ -21,6 +21,8 @@ Database format2:
       }]
 """
 from flask import Flask, request, jsonify
+from pymodm.connection import connect
+from db_def import Patient
 app = Flask(__name__)
 
 
@@ -31,14 +33,17 @@ def add_patient(in_data, check):
     if check is not True:
         message = check
         return message, 400
-    new_patient = {'name': in_data['name'], 'id': in_data['id'],
-                   'blood type': in_data['blood type'], 'test_name': [],
-                   'test_result': []}
+    # new_patient = {'name': in_data['name'], 'id': in_data['id'],
+    #                'blood type': in_data['blood type'], 'test_name': [],
+    #                'test_result': []}
     ex_bloodtype = ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-']
-    if new_patient['blood type'] not in ex_bloodtype:
+    if in_data['blood type'] not in ex_bloodtype:
         message = "Wrong blood type"
         return message, 400
+    new_patient = Patient(name=in_data['name'], ID=in_data['id'],
+                          blood_type=in_data['blood type'])
     db.append(new_patient)
+    new_patient.save()
     message = "Patient added successfully"
     return message, 200
 
@@ -104,5 +109,13 @@ def add_test_handler():
     return message, status
 
 
+def init_database():
+    connect("mongodb+srv://davidhe:password@cluster0.grsdcun.mongodb.net/test?"
+            "retryWrites=true&w=majority")
+    new_patient = {"name": "david", "id": 2, "blood type": "O+"}
+    add_patient(new_patient, True)
+
+
 if __name__ == "__main__":
+    init_database()
     app.run()
