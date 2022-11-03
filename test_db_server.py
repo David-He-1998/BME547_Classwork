@@ -14,7 +14,8 @@ def test_add_patient():
     test = {"name": "David", "id": 3, "blood type": "B+"}
     connect("mongodb+srv://davidhe:password@cluster0.grsdcun.mongodb.net/test?"
             "retryWrites=true&w=majority")
-    add_patient(test, True)
-    new = Patient.objects.raw({"name": "David"}).first()
-    new.delete()
-    assert new == Patient(name="David", ID=3, blood_type='B+')
+    # Remove password for safety reasons
+    # add_patient(test, True)
+    # new = Patient.objects.raw({"name": "David"}).first()
+    # new.delete()
+    # assert new == Patient(name="David", ID=3, blood_type='B+')
