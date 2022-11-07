@@ -22,6 +22,7 @@ Database format2:
 """
 from flask import Flask, request, jsonify
 from pymodm.connection import connect
+from pymodm import errors as pymodm_er
 from db_def import Patient
 app = Flask(__name__)
 
@@ -78,18 +79,29 @@ def add_test(in_data, check):
     if check is not True:
         message = check
         return message, 400
-    flag = False
-    for item in db:
-        if item['id'] == in_data['id']:
-            item['test_name'].append(in_data['test_name'])
-            item['test_result'].append(in_data['test_result'])
-            flag = True
-    if flag is False:
-        message = "Unable to find the patient"
-        status = 400
-    else:
-        message = "Test result added successfully"
+    # flag = False
+    # for item in db:
+    #     if item['id'] == in_data['id']:
+    #         item['test_name'].append(in_data['test_name'])
+    #         item['test_result'].append(in_data['test_result'])
+    #         flag = True
+    # if flag is False:
+    #     message = "Unable to find the patient"
+    #     status = 400
+    # else:
+    #     message = "Test result added successfully"
+    #     status = 200
+    # return message, status
+    try:
+        patient = Patient.objects.raw({"_id": in_data['id']}).first()
+        patient.test_name.append(in_data['test_name'])
+        patient.test_result.append(in_data['test_result'])
+        patient.save()
+        message = "Test result added"
         status = 200
+    except pymodm_er.DoesNotExist:
+        message = "Patients not found"
+        status = 400
     return message, status
 
 
