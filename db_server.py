@@ -22,7 +22,7 @@ Database format2:
 """
 from flask import Flask, request, jsonify
 from pymodm.connection import connect
-from pymodm import errors as pymdodm_er
+from pymodm import errors as pymodm_er
 from db_def import Patient
 app = Flask(__name__)
 
@@ -99,7 +99,7 @@ def add_test(in_data, check):
         patient.save()
         message = "Test result added"
         status = 200
-    except pymdodm_er.DoesNotExist:
+    except pymodm_er.DoesNotExist:
         message = "Patients not found"
         status = 400
     return message, status
@@ -129,5 +129,5 @@ def init_database():
 
 
 if __name__ == "__main__":
-    # init_database()
+    init_database()
     app.run()
