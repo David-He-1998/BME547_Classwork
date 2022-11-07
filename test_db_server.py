@@ -19,3 +19,17 @@ def test_add_patient():
     # new = Patient.objects.raw({"name": "David"}).first()
     # new.delete()
     # assert new == Patient(name="David", ID=3, blood_type='B+')
+
+
+def test_add_test():
+    from db_server import add_patient, add_test
+    test = {'name': "Ceasar", 'id': 3, 'blood type': 'B-'}
+    connect("mongodb+srv://davidhe:password@cluster0.grsdcun.mongodb.net/test?"
+            "retryWrites=true&w=majority")
+    add_patient(test, True)
+    test = {'test_name': "HDL", 'id': 3, 'test_result': 'Normal'}
+    msg, status = add_test(test, True)
+    new = Patient.objects.raw({"_id": 3}).first()
+    new.delete()
+    assert new == Patient(name="Ceasar", ID=3, blood_type="B-",
+                          test_name=["HDL"], test_result=["Normal"])
