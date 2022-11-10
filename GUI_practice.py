@@ -11,6 +11,7 @@ from tkinter import ttk
 
 def main_window():
     def ok_cmd():
+        other.configure(state=tk.NORMAL)
         print("ID:{}, name:{}, blood type:{},Rh{}\n Donation center:{}".
               format(ID_entry.get(), name_entry.get(), blood_type.get(),
                      Rh_entry.get(), center.get()))
@@ -55,9 +56,12 @@ def main_window():
 
     ttk.Label(root, text="Nearest Donor Center").grid(column=2, row=2)
     center = tk.StringVar()
-    ttk.OptionMenu(root, center, "Durham", "Raleigh", "Cary").\
-        grid(column=3, row=2)
-    ttk.Button(root, text="Other").grid(column=3, row=4)
+    center_combo = ttk.Combobox(root, textvariable=center)
+    center_combo.grid(column=3, row=2)
+    center_combo["values"] = ["Durham", "Cary", "Raleigh"]
+    center_combo.state(["readonly"])
+    other = ttk.Button(root, text="Other", state=tk.DISABLED)
+    other.grid(column=3, row=4)
     ttk.Button(root, text="cancel", command=cancel_cmd).grid(column=3, row=6)
 
     root.mainloop()
