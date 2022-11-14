@@ -15,5 +15,12 @@ import requests
 #     send = {'a': 50, 'b': 11}
 #     r = requests.post("http://127.0.0.1:5000/add_num", json=send)
 #     ans = r.json()
-patient = {'test_result': 120}
-r = requests.post("http://127.0.0.1:5000/add_test", json=patient)
+def upload_patient_info(name, ID, blood_type):
+    data = {"name": name, "id": ID, "blood type": blood_type}
+    r = requests.post("http://127.0.0.1:5000/new_patient", json=data)
+    return r.text, r.status_code
+
+
+if __name__ == "__main__":
+    patient = {'test_result': 120}
+    r = requests.post("http://127.0.0.1:5000/add_test", json=patient)

@@ -6,18 +6,55 @@ Created on Mon Nov  7 12:58:28 2022
 @author: david
 """
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
+from client import upload_patient_info
+from PIL import Image, ImageTk
+
+
+def upload_data(name, ID, blood, Rh):
+    blood_type = blood + Rh
+    ID = int(ID)
+    msg, status = upload_patient_info(name, ID, blood_type)
+    return msg, status
 
 
 def main_window():
+    # def get_update_info():
+    #     # command
+    #     root.after(2000, get_update_info)  # Update every 2000 ms
+
     def ok_cmd():
-        print("ID:{}, name:{}, blood type:{},Rh{}\n Donation center:{}".
-              format(ID_entry.get(), name_entry.get(), blood_type.get(),
+        # if Rh_entry.get() == '':
+        #     print("Choose a Rh type")
+        #     return
+        name = name_entry.get()
+        ID = ID_entry.get()
+        blood = blood_type.get()
+        Rh = Rh_entry.get()
+        msg, _ = upload_data(name, ID, blood, Rh)
+        print(Rh)
+        print("ID:{}, name:{}, blood type:{}\n Donation center:{}".
+              format(ID_entry.get(), name_entry.get(), blood_type.get() +
                      Rh_entry.get(), center.get()))
         print("Click ok")
+        status.configure(text=msg)
 
     def cancel_cmd():
         root.destroy()
+
+    def load_img_button():
+        # background_img = Image.open("img/angel.jpeg")
+        img_filename = filedialog.askopenfilename()
+        if img_filename == '':
+            return
+        background_img = Image.open(img_filename)
+        x, y = background_img.size
+        newx = 150
+        newy = int(y * newx / x)
+        background_img = background_img.resize((newx, newy))
+        tk_img = ImageTk.PhotoImage(background_img)
+        img_label.configure(image=tk_img)
+        img_label.image = tk_img
 
     root = tk.Tk()
     root.title("Blood Donor Database")
@@ -34,6 +71,8 @@ def main_window():
     ID_entry = tk.IntVar()
     ttk.Entry(root, width=10, textvariable=ID_entry).\
         grid(column=1, row=2, sticky="W")
+    status = ttk.Label(root, text="status")
+    status.grid(column=0, row=7)
     ttk.Button(root, text="Ok", command=ok_cmd).grid(column=2, row=6)
 
     blood_type = tk.StringVar()
@@ -60,6 +99,18 @@ def main_window():
     ttk.Button(root, text="Other").grid(column=3, row=4)
     ttk.Button(root, text="cancel", command=cancel_cmd).grid(column=3, row=6)
 
+    background_img = Image.open("img/Marina_Mayuri.jpeg")
+    x, y = background_img.size
+    newx = 150
+    newy = int(y * newx / x)
+    background_img = background_img.resize((newx, newy))
+    tk_img = ImageTk.PhotoImage(background_img)
+    img_label = ttk.Label(root, image=tk_img)
+    img_label.configure(image=tk_img)
+    img_label.image = tk_img
+    img_label.grid(column=1, row=7)
+    ttk.Button(root, text="Load Image", command=load_img_button).grid(column=2,
+                                                                      row=7)
     root.mainloop()
 
 
