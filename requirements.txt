@@ -5,3 +5,4 @@ requests
 flask
 pymodm
 pymongo[srv]
+Pillow
