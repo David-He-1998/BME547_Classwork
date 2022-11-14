@@ -35,7 +35,7 @@ def main_window():
         print(Rh)
         print("ID:{}, name:{}, blood type:{}\n Donation center:{}".
               format(ID_entry.get(), name_entry.get(), blood_type.get() +
-
+                     Rh_entry.get(), center.get()))
         other.configure(state=tk.NORMAL)
         print("Click ok")
         status.configure(text=msg)
